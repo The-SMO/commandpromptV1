@@ -24,6 +24,8 @@ def enter():
     lineget1 = str(line) + ".04"
     lineget2 = str(line) + ".20"
     input1 = text.get(lineget1,lineget2)
+    #if input1 == "help":
+        #list help from commandhelp.py
     os.system("cmd /k" + input1)
     returned_text = subprocess.check_output("dir", shell=True, universal_newlines=True)
     print(returned_text)
