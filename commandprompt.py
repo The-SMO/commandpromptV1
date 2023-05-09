@@ -2,7 +2,7 @@ import tkinter as tk
 import os
 import subprocess
 events = []
-
+addextra = 0
 line = 1
 window = tk.Tk()
 window.title("ConsolePanel")
@@ -18,20 +18,29 @@ def startline():
     #text.delete("1.0",tk.END)
     text.insert(tk.END," \n>>> ")
     global line
+    global addextra
+    line = line + addextra
     line += 1
-    print(line)
+    #print(line)
 def enter():
     lineget1 = str(line) + ".04"
-    lineget2 = str(line) + ".20"
+    lineget2 = str(line) + ".90"
     input1 = text.get(lineget1,lineget2)
     #if input1 == "help":
         #list help from commandhelp.py
-    os.system("cmd /k" + input1)
-    returned_text = subprocess.check_output("dir", shell=True, universal_newlines=True)
-    print(returned_text)
+    command = "cmd /c" +"\""+ input1+"\""
+    os.system("cmd /c" +"\""+ input1+"\"")
+    #returned_text = subprocess.check_output("dir", shell=True, universal_newlines=True)
+    #print(returned_text)
+    retext = subprocess.check_output(command,errors=None,shell=None)
+    print(retext)
+    text.insert(tk.END,retext)
+    global addextra
+    addextra = 0
+    addextra = len(retext.splitlines())
     #text.delete("1.0","1.20")
     startline()
-    print(input1)
+    #print(input1)
     #print(lineget1)
     #print(lineget2)
 
