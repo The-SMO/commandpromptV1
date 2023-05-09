@@ -8,7 +8,7 @@ window = tk.Tk()
 window.title("ConsolePanel")
 text = tk.Text(window, height=40, width=80)
 scroll = tk.Scrollbar(window)
-text.configure(yscrollcommand=scroll.set,background="black",foreground="white")
+text.configure(yscrollcommand=scroll.set,background="black",foreground="white",insertbackground='white')
 text.pack(side=tk.LEFT)
 
 scroll.config(command=text.yview)
